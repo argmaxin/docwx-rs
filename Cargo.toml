@@ -1,0 +1,49 @@
+[package]
+name = "docwx"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.101"
+clap =  { version = "4.5.58", features = ["derive"] }
+const-str = { version = "1.1.0", features = ["proc"] }
+const-str-proc-macro = "1.1.0"
+dashmap = { version = "6.1.0", features = ["inline"] }
+ignore =  { version = "0.4.25", features = ["simd-accel"] }
+memchr = "2.8.0"
+memmap2 = "0.9.9"
+phf = { version = "0.13.1", features = ["macros"] }
+wild = "2.2.1"
+
+[build-dependencies]
+shadow-rs = "1.7.0"
+
+[profile.release]
+lto = "fat"
+panic = "abort"
+debug = "none"
+codegen-units = 4
+opt-level = 3
+strip = "symbols"
+
+[profile.test]
+debug = "full"
+lto = "thin"
+codegen-units = 1
+opt-level = "z"
+strip = "none"
+
+[profile.bench]
+lto = "fat"
+debug = "limited"
+codegen-units = 4
+opt-level = 3
+strip = "none"
+
+[profile.dev]
+lto = "off"
+panic = "unwind"
+debug = "full"
+opt-level = 0
+strip = "none"
+codegen-units = 1
