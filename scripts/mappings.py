@@ -65,7 +65,7 @@ LANG_COMM_PREFIXES = {
     ".mli":  "*&",
     ".fs":   "//&",
     ".fsi":  "//&",
-    ".R":    "#&",
+    ".r":    "#&",
     ".re":   "//&",
     ".rei":  "//&",
     ".lisp": ";;&",
@@ -93,6 +93,7 @@ LANG_COMM_PREFIXES = {
     ".bzl":   "#&",
     ".s":    ";&",
     ".asm":  ";&",
+    ".groovy":"//&",
     
     "Makefile":        "#&",
     "GNUMakefile":     "#&",

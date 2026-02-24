@@ -56,6 +56,7 @@ pub const fn build_tables() -> phf::Map<&'static str, &'static str> {
 	 ".rei" => "//&",
 	 ".re" => "//&",
 	 ".rb" => "#&",
+	 ".r" => "#&",
 	 ".py" => "#&",
 	 ".ps1" => "#&",
 	 ".profile" => "#&",
@@ -82,6 +83,7 @@ pub const fn build_tables() -> phf::Map<&'static str, &'static str> {
 	 ".hpp" => "//&",
 	 ".hh" => "//&",
 	 ".h" => "//&",
+	 ".groovy" => "//&",
 	 ".go" => "//&",
 	 ".gitmodules" => "#&",
 	 ".gitlab-ci.yml" => "#&",
@@ -117,7 +119,6 @@ pub const fn build_tables() -> phf::Map<&'static str, &'static str> {
 	 ".bash" => "#&",
 	 ".awk" => "#&",
 	 ".asm" => ";&",
-	 ".R" => "#&",
 }
 }
 
