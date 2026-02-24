@@ -1,7 +1,7 @@
 #=================================================================================#
 #                                                                                 #
 #    docWX: A minimal, performant book-keeping, authoring and documentation tool. #
-#    Copyright (C) 2026  Xe64                                                     #
+#    Copyright (C) 2026  argmaxin                                                 #
 #                                                                                 #
 #    This program is free software: you can redistribute it and/or modify         #
 #    it under the terms of the GNU General Public License as published by         #
