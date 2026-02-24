@@ -52,7 +52,7 @@ def generate_header(lang_map):
         f.write("\tphf_map!{\n\n")
         for k in keys:
             f.write(f"\t \"{k}\" => \"{lang_map[k]}\",\n")
-        f.write("}\n")
+        f.write("\t}\n")
         f.write("}\n")
         f.write("\n")
 

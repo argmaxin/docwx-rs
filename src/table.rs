@@ -124,6 +124,6 @@ pub const fn build_tables() -> phf::Map<&'static str, &'static str> {
 	 ".bash" => "#&",
 	 ".awk" => "#&",
 	 ".asm" => ";&",
-}
+	}
 }
 
