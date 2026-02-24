@@ -31,7 +31,7 @@ def generate_header(lang_map):
 
     with open("table.rs", "w") as f:
         f.write("/*  docWX: A minimal, performant book-keeping, authoring and documentation tool.\n")
-        f.write("\tCopyright (C) 2026  Xe64\n")
+        f.write("\tCopyright (C) 2026  argmaxin\n")
         f.write("\t\n")
         f.write("\tThis program is free software: you can redistribute it and/or modify\n")
         f.write("\tit under the terms of the GNU General Public License as published by\n")
