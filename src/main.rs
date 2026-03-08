@@ -26,6 +26,27 @@ mod table;
 const MAX_VALUE: &str = const_str::format!("{}", usize::MAX);
 
 use ignore::WalkBuilder;
+use std::io::{self, BufRead};
+use std::path::PathBuf;
+
+fn read_stdin_paths() -> Vec<PathBuf> {
+    let stdin = io::stdin();
+    let reader = stdin.lock();
+
+    reader
+        .lines()
+        .filter_map(Result::ok)
+        .map(PathBuf::from)
+        .collect()
+}
+
+fn parse_paths(paths: Vec<std::path::PathBuf>) -> Vec<Document> {
+    paths
+        .into_iter()
+        .map(|path| Parser::new(&path).and_then(|mut p| p.parse()))
+        .collect::<Result<Vec<_>, _>>()
+        .expect("parsing failed")
+}
 
 fn expand(vals: Vec<&String>, max_depth: usize, git: bool) -> Vec<Document> {
     let mut builder = WalkBuilder::new(vals[0]);
@@ -58,7 +79,7 @@ fn main() -> ExitCode {
     let matches = clap::Command::new("docwx")
         .name("docwx")
         .author("argmaxin <contact@argmax.in>")
-        .version("0.1.0")
+        .version("0.1.3")
         .about("A minimal, performant book-keeping, authoring and documentation tool.")
         .arg(
             clap::Arg::new("depth")
@@ -86,6 +107,14 @@ fn main() -> ExitCode {
                 .required(true),
         )
         .arg(
+            clap::Arg::new("list")
+                .short('L')
+                .help("Read file paths from stdin (use '-' as input)")
+                .action(ArgAction::SetTrue)
+                .conflicts_with("input")
+                .required(true),
+        )
+        .arg(
             clap::Arg::new("git")
                 .long("gitignore")
                 .short('g')
@@ -95,11 +124,6 @@ fn main() -> ExitCode {
         )
         .color(clap::ColorChoice::Auto)
         .get_matches_from(wild::args());
-
-    let vals: Vec<&String> = matches
-        .get_many("input")
-        .expect("`input`is required")
-        .collect();
 
     let depth = matches.get_one("depth");
     let depth: usize = match depth {
@@ -113,7 +137,19 @@ fn main() -> ExitCode {
         _ => false,
     };
 
-    let docs: Vec<Document> = expand(vals, depth, git);
+    let use_stdin = matches.get_flag("list");
+
+    let docs: Vec<Document> = if use_stdin {
+        let paths = read_stdin_paths();
+        parse_paths(paths)
+    } else {
+        let vals: Vec<&String> = matches
+            .get_many("input")
+            .expect("`input`is required")
+            .collect();
+
+        expand(vals, depth, git)
+    };
     let d = crate::source::merge_documents(docs);
 
     if let Some(doc) = d {
@@ -125,7 +161,7 @@ fn main() -> ExitCode {
                 .into_iter()
                 .try_for_each(|page| -> anyhow::Result<()> {
                     let full_path = out_dir.join(&page.path);
-                    
+
                     if let Some(parent) = full_path.parent()
                         && !created_dirs.contains(parent)
                     {

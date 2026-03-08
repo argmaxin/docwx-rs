@@ -1,18 +1,18 @@
 /*  docWX: A minimal, performant book-keeping, authoring and documentation tool.
-    Copyright (C) 2026 argmaxin
+Copyright (C) 2026 argmaxin
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 
 //& @page("source")
 //&  @section(1000)
@@ -160,13 +160,14 @@ fn parse_section_directive(line: &str) -> Result<Option<usize>, anyhow::Error> {
 
     let inner = strip_ws(&rest[1..rest.len() - 1]);
 
-    let id = inner.parse::<usize>()
+    let id = inner
+        .parse::<usize>()
         .map_err(|_| anyhow!("invalid section id"))?;
 
     Ok(Some(id))
 }
 
-//& 
+//&
 pub fn merge_documents(docs: Vec<Document>) -> Option<Document> {
     let mut map: BTreeMap<String, BTreeMap<usize, Section>> = BTreeMap::new();
 
