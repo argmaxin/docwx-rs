@@ -79,7 +79,7 @@ fn main() -> ExitCode {
     let matches = clap::Command::new("docwx")
         .name("docwx")
         .author("argmaxin <contact@argmax.in>")
-        .version("0.1.3")
+        .version("0.1.5")
         .about("A minimal, performant book-keeping, authoring and documentation tool.")
         .arg(
             clap::Arg::new("depth")
