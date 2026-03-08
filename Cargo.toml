@@ -1,6 +1,6 @@
 [package]
 name = "docwx"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2024"
 description = "A minimal, performant book-keeping, authoring and documentation tool."
 repository = "https://github.com/argmaxin/docwx-rs"

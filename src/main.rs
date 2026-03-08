@@ -35,7 +35,7 @@ fn read_stdin_paths() -> Vec<PathBuf> {
 
     reader
         .lines()
-        .filter_map(Result::ok)
+        .map_while(Result::ok)
         .map(PathBuf::from)
         .collect()
 }
