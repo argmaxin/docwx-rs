@@ -1,7 +1,10 @@
 [package]
 name = "docwx"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
+description = "A minimal, performant book-keeping, authoring and documentation tool."
+repository = "https://github.com/argmaxin/docwx-rs"
+license = "GPL-3.0-or-later" 
 
 [dependencies]
 anyhow = "1.0.101"

@@ -8,6 +8,11 @@
 
  ## Usage
 
+ ### crates.io (Recommended)
+ 
+ Run: `cargo install docwx`
+
+ ### Local
  Build: `cargo build --release`.
  Install (if needed): `cargo install --path .`
  
