@@ -109,7 +109,7 @@ fn main() -> ExitCode {
         .arg(
             clap::Arg::new("list")
                 .short('L')
-                .help("Read file paths from stdin (use '-' as input)")
+                .help("Read file paths from stdin")
                 .action(ArgAction::SetTrue)
                 .conflicts_with("input")
                 .required(true),
